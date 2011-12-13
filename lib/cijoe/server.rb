@@ -85,12 +85,12 @@ class CIJoe
     end
 
     def self.start(host, port, project_path)
-      set :project_path, project_path
+      set :project_path, project_path, true
       CIJoe::Server.run! :host => host, :port => port
     end
 
     def self.rack_start(project_path)
-      set :project_path, project_path
+      set :project_path, project_path, true
       self.new
     end
 
@@ -102,7 +102,7 @@ class CIJoe
         end
         puts "Using HTTP basic auth"
       end
-      set :project_path, Proc.new{project_path}
+      set :project_path, Proc.new{project_path}, true
     end
 
     def check_project
