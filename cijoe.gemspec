@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mocha'
   s.add_development_dependency 'rake', '>= 0.9.2'
   s.add_development_dependency 'rdoc', '>= 2.4.2'
+  s.add_development_dependency 'fakefs'
 
    s.description       = <<desc
   cijoe is a sinatra-based continuous integration server. It's like an
