@@ -30,7 +30,9 @@ class CIJoe
     post '/?' do
       unless params[:rebuild]
         payload = JSON.parse(params[:payload])
-        pushed_branch = payload["ref"].split('/').last
+        unless payload["ref"].nil?
+          pushed_branch = payload["ref"].split('/').last
+        end
       end
       
       # Only build if we were given an explicit branch via `?branch=blah`
