@@ -117,7 +117,7 @@ class CIJoe
     build.branch = git_branch
     write_build 'current', build
 
-    open_pipe("cd #{@project_path} && #{runner_command} 2>&1") do |pipe, pid|
+    open_pipe("cd \"#{@project_path}\" && #{runner_command} 2>&1") do |pipe, pid|
       puts "#{Time.now.to_i}: Building #{build.branch} at #{build.short_sha}: pid=#{pid}"
 
       build.pid = pid
@@ -143,11 +143,11 @@ class CIJoe
   end
 
   def git_sha
-    `cd #{@project_path} && git rev-parse origin/#{git_branch}`.chomp
+    `cd \"#{@project_path}\" && git rev-parse origin/#{git_branch}`.chomp
   end
 
   def git_update
-    `cd #{@project_path} && git fetch origin && git reset --hard origin/#{git_branch}`
+    `cd \"#{@project_path}\" && git fetch origin && git reset --hard origin/#{git_branch}`
     run_hook "after-reset"
   end
 
@@ -179,7 +179,7 @@ class CIJoe
       orig_ENV = ENV.to_hash
       ENV.clear
       data.each{ |k, v| ENV[k] = v }
-      output = `cd #{@project_path} && sh #{file}`
+      output = `cd \"#{@project_path}\" && sh #{file}`
       
       ENV.clear
       orig_ENV.to_hash.each{ |k, v| ENV[k] = v}

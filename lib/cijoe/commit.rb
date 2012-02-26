@@ -17,7 +17,7 @@ class CIJoe
     end
 
     def raw_commit
-      @raw_commit ||= `cd #{project_path} && git show #{sha}`.chomp
+      @raw_commit ||= `cd \"#{project_path}\" && git show #{sha}`.chomp
     end
 
     def raw_commit_lines
