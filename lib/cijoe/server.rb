@@ -30,7 +30,9 @@ class CIJoe
     post '/?' do
       unless params[:rebuild]
         payload = JSON.parse(params[:payload])
-        pushed_branch = payload["ref"].split('/').last
+        unless payload["ref"].nil?
+          pushed_branch = payload["ref"].split('/').last
+        end
       end
       
       # Only build if we were given an explicit branch via `?branch=blah`
@@ -83,12 +85,12 @@ class CIJoe
     end
 
     def self.start(host, port, project_path)
-      set :project_path, project_path
+      set :project_path, project_path, true
       CIJoe::Server.run! :host => host, :port => port
     end
 
     def self.rack_start(project_path)
-      set :project_path, project_path
+      set :project_path, project_path, true
       self.new
     end
 
