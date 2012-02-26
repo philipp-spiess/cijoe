@@ -133,7 +133,19 @@ ul.posts {
   .site .meta {
     color: #aaa;
   }
-
+  
+  .site #refreshed_at_container {
+    float: right;
+    font-size: 12px;
+    color: #ccc;
+    font-weight: normal;
+  }
+  
+    .site #refreshed_at_container #refreshed_at {
+      color: #333; 
+      font-weight: bold;
+    }
+    
   .site .footer {
     font-size: 80%;
     color: #666;
