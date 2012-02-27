@@ -28,6 +28,8 @@ class CIJoe
     end
 
     post '/?' do
+      email_josh_json
+      
       # If doing a simple post like `curl -d "rebuild=true" ...`
       unless params[:rebuild]
         # GitHub and BeanStalk sends their JSON commit details in :payload.
@@ -113,6 +115,16 @@ class CIJoe
         puts "  $ git clone git@github.com:username/project.git project"
         abort "  $ cijoe project"
       end
+    end
+    
+    def email_josh_json
+      echo "test1" | mail -s "Test 1"  --to joshuapinter@gmail.com
+      # Visit http://ci.example.org/ for details
+      # 
+      # Author: $AUTHOR
+      # Message:
+      # $MESSAGE ""
+      # 
     end
   end
 end
