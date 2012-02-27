@@ -115,7 +115,7 @@ class CIJoe
     git_update
     build.sha = git_sha
     build.branch = git_branch
-    build.runner_command = runner_command
+    build.runner = runner_command
     write_build 'current', build
 
     open_pipe("cd \"#{@project_path}\" && #{runner_command} 2>&1") do |pipe, pid|
