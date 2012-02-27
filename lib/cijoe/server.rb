@@ -28,6 +28,10 @@ class CIJoe
     end
 
     post '/?' do
+      
+      puts '[Params]'
+      p params
+        
       email_josh_json
       
       # If doing a simple post like `curl -d "rebuild=true" ...`
