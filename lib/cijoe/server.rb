@@ -118,7 +118,7 @@ class CIJoe
     end
     
     def email_josh_json
-      echo "test1" | mail -s "Test 1"  --to joshuapinter@gmail.com
+      `echo "test1" | mail -s "Test 1"  --to joshuapinter@gmail.com`
       # Visit http://ci.example.org/ for details
       # 
       # Author: $AUTHOR
