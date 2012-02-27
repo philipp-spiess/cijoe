@@ -22,7 +22,7 @@
         <ul class="posts">
           <% if joe.current_build %>
             <li>
-              <span class="date"><%= pretty_time(joe.current_build.started_at) if joe.current_build %></span> &raquo;
+              <span class="date"><%= pretty_time(joe.current_build.started_at.getlocal("-07:00")) if joe.current_build %></span> &raquo;
               <% if joe.current_build.sha %>
                 Building <%= joe.current_build.branch %> at <a href="<%= joe.current_build.commit.url %>"><%= joe.current_build.short_sha %></a> <small>(pid: <%= joe.pid %>)</small>
               <% else %>
@@ -41,7 +41,7 @@
           
           <% if joe.last_build %>
             <li>
-              <span class="date"><%= pretty_time(joe.last_build.finished_at) %></span> &raquo;
+              <span class="date"><%= pretty_time(joe.last_build.finished_at.getlocal("-07:00")) %></span> &raquo;
               <% if joe.last_build.sha %>
                 Built <%= joe.last_build.branch %> at <a href="<%= joe.last_build.commit.url %>"><%= joe.last_build.short_sha %></a>
               <% end %>
