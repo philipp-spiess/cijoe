@@ -30,7 +30,13 @@
               <% end %>
             </li>
           <% else %>
-            <li><form method="POST"><input type="hidden", name="rebuild" value="true"><input type="submit" value="Build"/></form></li>
+            <li>
+              <form method="POST">
+                <input type="hidden", name="rebuild" value="true">
+                <input type="hidden", name="branch" value="staging">
+                <input type="submit" value="Build"/>
+              </form>
+            </li>
           <% end %>
           
           <% if joe.last_build %>
