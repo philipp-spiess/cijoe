@@ -115,10 +115,11 @@ class CIJoe
     git_update
     build.sha = git_sha
     build.branch = git_branch
+    build.runner_command = runner_command
     write_build 'current', build
 
     open_pipe("cd \"#{@project_path}\" && #{runner_command} 2>&1") do |pipe, pid|
-      puts "#{Time.now.to_i}: Building #{build.branch} at #{build.short_sha}: pid=#{pid}"
+      puts "#{Time.zone.now.to_i}: Building #{build.branch} at #{build.short_sha}: pid=#{pid} with '#{build.runner}'"
 
       build.pid = pid
       write_build 'current', build
@@ -128,7 +129,7 @@ class CIJoe
     Process.waitpid(build.pid, 1)
     status = $?.exitstatus.to_i
     @current_build = build
-    puts "#{Time.now.to_i}: Built #{build.short_sha}: status=#{status}"
+    puts "#{Time.now.to_i}: Built #{build.short_sha}: status=#{status} with '#{build.runner}'"
 
     status == 0 ? build_worked(output) : build_failed('', output)
   rescue Object => e

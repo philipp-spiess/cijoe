@@ -1,7 +1,7 @@
 require 'yaml'
 
 class CIJoe
-  class Build < Struct.new(:project_path, :user, :project, :started_at, :finished_at, :sha, :status, :output, :pid, :branch)
+  class Build < Struct.new(:project_path, :user, :project, :started_at, :finished_at, :sha, :status, :output, :pid, :branch, :runner)
     def initialize(*args)
       super
       self.started_at ||= Time.now
@@ -52,7 +52,7 @@ class CIJoe
     end
 
     def dump(file)
-      config = [user, project, started_at, finished_at, sha, status, output, pid, branch]
+      config = [user, project, started_at, finished_at, sha, status, output, pid, branch, runner]
       data = YAML.dump(config)
       File.open(file, 'wb') { |io| io.write(data) }
     end
