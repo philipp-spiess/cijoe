@@ -28,8 +28,10 @@ class CIJoe
     end
 
     post '/?' do
+      # If doing a simple post like `curl -d "rebuild=true" ...`
       unless params[:rebuild]
-        payload = JSON.parse(params[:payload])
+        # GitHub and BeanStalk sends their JSON commit details in :payload.
+        payload = JSON.parse( params[:payload] )
         unless payload["ref"].nil?
           pushed_branch = payload["ref"].split('/').last
         end
