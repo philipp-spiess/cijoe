@@ -37,7 +37,8 @@ class CIJoe
       # If doing a simple post like `curl -d "rebuild=true" ...`
       unless params[:rebuild]
         # GitHub and BeanStalk sends their JSON commit details in :payload.
-        payload = JSON.parse( params[:payload] || params )
+        # During testing I couldn't get this to work by accessing the hash key with a symbol.
+        payload = JSON.parse( params[:payload] || params["payload"] )
         unless payload["ref"].nil?
           pushed_branch = payload["ref"].split('/').last
         end
