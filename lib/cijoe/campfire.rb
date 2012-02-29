@@ -57,8 +57,7 @@ class CIJoe
     end
 
     def short_message
-      "#{build.branch} at #{build.short_sha} of #{build.project} " +
-        (build.worked? ? "passed" : "failed") + " (#{build.duration.to_i}s)"
+      "[#{humanize(build.project)}] #{(build.worked? ? "Passed" : "***FAILED***")} on #{build.branch} at #{build.short_sha} (#{build.duration.to_i}s)"
     end
 
     def full_message
@@ -69,6 +68,16 @@ Commit Author: #{build.commit.author}
 
 #{build.clean_output}
 EOM
+    end
+    
+    def humanize(lower_case_and_underscored_word)
+      result = lower_case_and_underscored_word.to_s.dup
+      inflections.humans.each { |(rule, replacement)| break if result.gsub!(rule, replacement) }
+      result.gsub!(/_id$/, "")
+      result.gsub!(/_/, ' ')
+      result.gsub(/([a-z\d]*)/i) { |match|
+        "#{inflections.acronyms[match] || match.downcase}"
+      }.gsub(/^\w/) { $&.upcase }
     end
   end
 end
