@@ -12,11 +12,11 @@
 # Do not forget: chmod +x build-failed
 #
 echo "
-Visit http://ci.example.org/ for details
+Visit http://ci.insightemissions.com/emission_central/public/ for details
 
 Author:  $AUTHOR
 Message:
 $MESSAGE
 
 $OUTPUT
-" | mail -s "[example.org] BUILD FAILED $SHA" --to first@gmail.com second@gmail.com
+" | mail -s "[Emission Central] ***FAILED*** $BRANCH build at $SHA" --to jpinter@insightemissions.com cbergeron@insightemissions.com

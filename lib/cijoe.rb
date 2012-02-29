@@ -168,10 +168,11 @@ class CIJoe
       data =
         if @last_build && @last_build.commit
           {
+            "BRANCH"  => @last_build.branch.capitalize,
             "MESSAGE" => @last_build.commit.message,
-            "AUTHOR" => @last_build.commit.author,
-            "SHA" => @last_build.commit.sha,
-            "OUTPUT" => @last_build.env_output
+            "AUTHOR"  => @last_build.commit.author,
+            "SHA"     => @last_build.commit.sha,
+            "OUTPUT"  => @last_build.env_output
           }
         else
           {}
