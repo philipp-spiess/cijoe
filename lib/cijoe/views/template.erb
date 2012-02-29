@@ -82,16 +82,16 @@
       </div>
     </div>
     <script type="text/javascript">
-      document.onload = refresh_page();
+      document.onload = page_refreshed_at();
 
-      function refresh_page() {
-        update_refreshed_at();
+      function page_refreshed_at() {
+        update_page_refreshed_at();
         setTimeout(function() {
           location.reload(true);
-        }, 10 * 1000);
+        }, 60 * 1000);
       }
       
-      function update_refreshed_at() {
+      function update_page_refreshed_at() {
         var now = new Date();
         var hours = now.getHours();
         var minutes = now.getMinutes();
