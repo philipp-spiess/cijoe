@@ -33,8 +33,15 @@
             <li>
               <form method="POST">
                 <input type="hidden", name="rebuild" value="true">
+                <input type="hidden", name="branch" value="master">
+                <input type="submit" value="Build Master"/>
+              </form>
+            </li>
+            <li>
+              <form method="POST">
+                <input type="hidden", name="rebuild" value="true">
                 <input type="hidden", name="branch" value="staging">
-                <input type="submit" value="Build"/>
+                <input type="submit" value="Build Staging"/>
               </form>
             </li>
           <% end %>
