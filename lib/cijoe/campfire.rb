@@ -57,7 +57,7 @@ class CIJoe
     end
 
     def short_message
-      "[#{build.project}] #{(build.worked? ? "Passed" : "***FAILED***")} on #{build.branch} at #{build.short_sha} (#{build.duration.to_i}s)"
+      "#{(build.worked? ? ":shipit: Passed" : ":disappointed: *FAILED*")} #{build.project} on #{build.branch} at #{build.short_sha} (#{build.duration.to_i}s)"
     end
 
     def full_message
