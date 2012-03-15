@@ -60,6 +60,10 @@ class CIJoe
     finish_build :failed, "#{error}\n\n#{output}"
     run_hook "build-failed"
   end
+  
+  def build_skipped( branch )
+    finish_build :skipped, "Skipped build on branch #{branch}"
+  end
 
   def build_worked(output)
     finish_build :worked, output
@@ -89,6 +93,15 @@ class CIJoe
       return
     end
     @current_build = Build.new(@project_path, @user, @project)
+    
+    # Only build on desired branches.
+    if !branches_to_test.empty? and !branches_to_test.include?( branch )
+      # Skip the build if only certain branches should be tested and this branch isn't one of them.
+      build_skipped( branch )
+      puts "Skipped build for #{branch}."
+      return
+    end
+    
     write_build 'current', @current_build
     Thread.new { build!(branch) }
   end
@@ -224,4 +237,15 @@ class CIJoe
   def read_build(name)
     Build.load(path_in_project(".git/builds/#{name}"), @project_path)
   end
+  
+  # Determines which branches to test. Can be set in Git Config.
+  # If nothing is set, assumes any and all branches that are pushed.
+  #
+  # @return [Array]
+  #
+  def branches_to_test
+    return @branches_to_test if @branches_to_test
+    @branches_to_test = repo_config.branchestotest.to_s.split(' ')
+  end
+  
 end
