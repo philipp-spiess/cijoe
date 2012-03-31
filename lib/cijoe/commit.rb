@@ -2,10 +2,10 @@ class CIJoe
   class Commit < Struct.new(:sha, :user, :project, :project_path)
     def url
       # BeanStalk
-      "https://oxygenwebs.beanstalkapp.com/#{project}/changesets/#{sha}"
+      # "https://oxygenwebs.beanstalkapp.com/#{project}/changesets/#{sha}"
       
       # GitHub
-      # "http://github.com/#{user}/#{project}/commit/#{sha}"
+      "http://github.com/#{user}/#{project}/commit/#{sha}"
     end
 
     def author
