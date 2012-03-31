@@ -2,13 +2,13 @@ $LOAD_PATH.unshift 'lib'
 require "cijoe/version"
 
 Gem::Specification.new do |s|
-  s.name              = "joshuapinter-cijoe"
+  s.name              = "philipp-spiess-cijoe"
   s.version           = CIJoe::VERSION
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "cijoe builds your builds."
-  s.homepage          = "http://github.com/joshuapinter/cijoe"
+  s.homepage          = "http://github.com/philipp-spiess/cijoe"
   s.email             = "chris@ozmm.org"
-  s.authors           = [ "Chris Wanstrath", "Josh Owens" ]
+  s.authors           = [ "Chris Wanstrath", "Josh Owens", "Philipp Spieß" ]
   s.has_rdoc          = false
 
   s.files             = %w( README.md Rakefile LICENSE )
